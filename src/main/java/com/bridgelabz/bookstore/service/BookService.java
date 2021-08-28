@@ -44,8 +44,8 @@ public class BookService implements IBookService{
 		boolean verify = restTemplate.getForObject("http://userbook-store/verifyemail/" + token,Boolean.class);
 		if (verify) 
 		{
-			Optional<BookModel> isUserPresent = bookRepository.findById(id);
-			return new ResponseDTO("User of id:" + id, isUserPresent);
+			Optional<BookModel> isBookPresent = bookRepository.findById(id);
+			return new ResponseDTO("User of id:" + id, isBookPresent);
 		}
 		else 
 		{
@@ -73,17 +73,17 @@ public class BookService implements IBookService{
 		boolean verify = restTemplate.getForObject("http://userbook-store/verifyemail/" + token,Boolean.class);
 		if (verify) 
 		{
-			Optional<BookModel> isUserPresent = bookRepository.findById(id);
-			if (isUserPresent.isPresent()) 
+			Optional<BookModel> isBookPresent = bookRepository.findById(id);
+			if (isBookPresent.isPresent()) 
 			{
-				isUserPresent.get().setBookName(bookDTO.getBookName());
-				isUserPresent.get().setBookAuthor(bookDTO.getBookAuthor());
-				isUserPresent.get().setBookDescription(bookDTO.getBookDescription());
-				isUserPresent.get().setBookName(bookDTO.getBookLogo());
-				isUserPresent.get().setBookPrice(bookDTO.getBookPrice());
-				isUserPresent.get().setBookQuantity(bookDTO.getBookQuantity());
-				bookRepository.save(isUserPresent.get());
-				return new ResponseDTO("Book Details Updated Successfully ",isUserPresent.get());
+				isBookPresent.get().setBookName(bookDTO.getBookName());
+				isBookPresent.get().setBookAuthor(bookDTO.getBookAuthor());
+				isBookPresent.get().setBookDescription(bookDTO.getBookDescription());
+				isBookPresent.get().setBookName(bookDTO.getBookLogo());
+				isBookPresent.get().setBookPrice(bookDTO.getBookPrice());
+				isBookPresent.get().setBookQuantity(bookDTO.getBookQuantity());
+				bookRepository.save(isBookPresent.get());
+				return new ResponseDTO("Book Details Updated Successfully ",isBookPresent.get());
 			}
 			else
 			{
@@ -101,11 +101,11 @@ public class BookService implements IBookService{
 		boolean verify = restTemplate.getForObject("http://userbook-store/verifyemail/" + token,Boolean.class);
 		if (verify) 
 		{
-			Optional<BookModel> isUserPresent = bookRepository.findById(id);
-			if (isUserPresent.isPresent()) 
+			Optional<BookModel> isBookPresent = bookRepository.findById(id);
+			if (isBookPresent.isPresent()) 
 			{
 				bookRepository.deleteById(id);
-				return new ResponseDTO("Book Deleted Successfully",isUserPresent.get());
+				return new ResponseDTO("Book Deleted Successfully",isBookPresent.get());
 			}
 			else 
 			{
@@ -123,12 +123,12 @@ public class BookService implements IBookService{
 		boolean verify = restTemplate.getForObject("http://userbook-store/verifyemail/" + token,Boolean.class);
 		if (verify) 
 		{
-			Optional<BookModel> isUserPresent = bookRepository.findById(id);
-			if (isUserPresent.isPresent()) 
+			Optional<BookModel> isBookPresent = bookRepository.findById(id);
+			if (isBookPresent.isPresent()) 
 			{
-				isUserPresent.get().setBookPrice(price);
-				bookRepository.save(isUserPresent.get());
-				return new ResponseDTO("Book Price Updated Sucessfully",isUserPresent.get());
+				isBookPresent.get().setBookPrice(price);
+				bookRepository.save(isBookPresent.get());
+				return new ResponseDTO("Book Price Updated Sucessfully",isBookPresent.get());
 			}
 			else 
 			{
@@ -146,12 +146,12 @@ public class BookService implements IBookService{
 		boolean verify = restTemplate.getForObject("http://userbook-store/verifyemail/" + token,Boolean.class);
 		if (verify) 
 		{
-			Optional<BookModel> isUserPresent = bookRepository.findById(id);
-			if (isUserPresent.isPresent()) 
+			Optional<BookModel> isBookPresent = bookRepository.findById(id);
+			if (isBookPresent.isPresent()) 
 			{
-				isUserPresent.get().setBookQuantity(quantity);
-				bookRepository.save(isUserPresent.get());
-				return new ResponseDTO("Book Quantity Updated Sucessfully",isUserPresent.get());
+				isBookPresent.get().setBookQuantity(quantity);
+				bookRepository.save(isBookPresent.get());
+				return new ResponseDTO("Book Quantity Updated Sucessfully",isBookPresent.get());
 			}
 			else 
 			{
@@ -162,6 +162,25 @@ public class BookService implements IBookService{
 		{
 			throw new BookException(400, "User not Login, Please Check");
 		}
+	}
+	@Override
+	public Boolean verifyBook(String token,int id)
+	{
+		
+		boolean verify = restTemplate.getForObject("http://userbook-store/verifyemail/" + token,Boolean.class);
+		if (verify) 
+		{
+			Optional<BookModel> isBookPresent = bookRepository.findById(id);
+			if(isBookPresent != null) 
+			{
+				return true;
+			}
+			else 
+			{
+				return false;
+			}
+		}
+		return verify;
 	}
 	
 	

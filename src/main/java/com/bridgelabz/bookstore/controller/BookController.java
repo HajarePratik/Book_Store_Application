@@ -70,6 +70,11 @@ public class BookController
 		ResponseDTO respDTO = bookService.updateBookQuantity(token,id,quantity);
 		return new ResponseEntity<ResponseDTO>(respDTO,HttpStatus.OK);
 	}
-
+	
+	@GetMapping("/verifyBook/{token}/{id}")
+	public Boolean verifyBook(@PathVariable String token,@PathVariable int id) 
+	{
+		return bookService.verifyBook(token,id);
+	}
 	
 }

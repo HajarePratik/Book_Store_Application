@@ -23,4 +23,6 @@ public interface IBookService
 
 	ResponseDTO updateBookQuantity(String token, int id, long quantity);
 	
+	Boolean verifyBook(String token,int id);
+	
 }
