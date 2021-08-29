@@ -11,18 +11,18 @@ public interface IBookService
 	
 	ResponseDTO getAllBooks(String token);
 
-	ResponseDTO getBook(String token,int id);
+	ResponseDTO getBook(String token,int bookid);
 	
 	ResponseDTO addBook(String token, BookDTO bookDTO);
 
-	ResponseDTO updateBook(String token, int id, BookDTO bookDTO);
+	ResponseDTO updateBook(String token, int bookid, BookDTO bookDTO);
 
-	ResponseDTO deleteBook(String token, int id);
+	ResponseDTO deleteBook(String token, int bookid);
 
-	ResponseDTO updateBookPrice(String token, int id, double price);
+	ResponseDTO updateBookPrice(String token, int bookid, double price);
 
-	ResponseDTO updateBookQuantity(String token, int id, long quantity);
+	ResponseDTO updateBookQuantity(String token, int bookid, long quantity);
 	
-	Boolean verifyBook(String token,int id);
+	Boolean verifyBook(String token,int bookid);
 	
 }

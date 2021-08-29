@@ -29,10 +29,10 @@ public class BookController
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 
-	@GetMapping("/getbook/{token}/{id}")
-	public ResponseEntity<ResponseDTO> getBook(@PathVariable String token,@PathVariable int id)
+	@GetMapping("/getbook/{token}/{bookid}")
+	public ResponseEntity<ResponseDTO> getBook(@PathVariable String token,@PathVariable int bookid)
 	{
-		ResponseDTO respDTO = bookService.getBook(token,id);
+		ResponseDTO respDTO = bookService.getBook(token,bookid);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 	
@@ -44,37 +44,37 @@ public class BookController
 		return new ResponseEntity<ResponseDTO>(resDTO,HttpStatus.OK);
 	}
 	
-	@PutMapping("/updatebook/{token}/{id}")
-	public ResponseEntity<ResponseDTO> updateBook(@PathVariable String token,@PathVariable int id, @RequestBody BookDTO userDTO)
+	@PutMapping("/updatebook/{token}/{bookid}")
+	public ResponseEntity<ResponseDTO> updateBook(@PathVariable String token,@PathVariable int bookid, @RequestBody BookDTO userDTO)
 	{
-		ResponseDTO respDTO = bookService.updateBook(token,id, userDTO);
+		ResponseDTO respDTO = bookService.updateBook(token,bookid, userDTO);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deletebook/{token}/{id}")
-	public ResponseEntity<ResponseDTO> deleteBook(@PathVariable String token, @PathVariable int id) {
-		ResponseDTO respDTO = bookService.deleteBook(token, id);
+	@DeleteMapping("/deletebook/{token}/{bookid}")
+	public ResponseEntity<ResponseDTO> deleteBook(@PathVariable String token, @PathVariable int bookid) {
+		ResponseDTO respDTO = bookService.deleteBook(token, bookid);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 	
-	@PutMapping("/updatebookprice/{token}/{id}")
-	public ResponseEntity<ResponseDTO> updateBookPrice(@PathVariable String token,@PathVariable int id,@RequestParam double price)
+	@PutMapping("/updatebookprice/{token}/{bookid}")
+	public ResponseEntity<ResponseDTO> updateBookPrice(@PathVariable String token,@PathVariable int bookid,@RequestParam double price)
 	{
-		ResponseDTO respDTO = bookService.updateBookPrice(token,id,price);
+		ResponseDTO respDTO = bookService.updateBookPrice(token,bookid,price);
 		return new ResponseEntity<ResponseDTO>(respDTO,HttpStatus.OK);
 	}
 	
-	@PutMapping("/updatebookquantity/{token}/{id}")
-	public ResponseEntity<ResponseDTO> updateBookQuantity(@PathVariable String token,@PathVariable int id,@RequestParam long quantity)
+	@PutMapping("/updatebookquantity/{token}/{bookid}")
+	public ResponseEntity<ResponseDTO> updateBookQuantity(@PathVariable String token,@PathVariable int bookid,@RequestParam long quantity)
 	{
-		ResponseDTO respDTO = bookService.updateBookQuantity(token,id,quantity);
+		ResponseDTO respDTO = bookService.updateBookQuantity(token,bookid,quantity);
 		return new ResponseEntity<ResponseDTO>(respDTO,HttpStatus.OK);
 	}
 	
-	@GetMapping("/verifyBook/{token}/{id}")
-	public Boolean verifyBook(@PathVariable String token,@PathVariable int id) 
+	@GetMapping("/verifybook/{token}/{bookid}")
+	public Boolean verifyBook(@PathVariable String token,@PathVariable int bookid) 
 	{
-		return bookService.verifyBook(token,id);
+		return bookService.verifyBook(token,bookid);
 	}
 	
 }
